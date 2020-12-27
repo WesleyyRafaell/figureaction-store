@@ -12,6 +12,7 @@ const Stack = createStackNavigator();
 
 // components
 import Welcome from './pages/Welcome';
+import Shop from './pages/shop';
 
 export default function Routes(){
   const [fontsLoaded] = useFonts({
@@ -25,10 +26,13 @@ export default function Routes(){
   
   return(
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{
+      <Stack.Navigator 
+       initialRouteName="Welcome"
+      screenOptions={{
         headerShown: false
       }}>
         <Stack.Screen name="Welcome" component={Welcome} />
+        <Stack.Screen name="Shop" component={Shop} />
       </Stack.Navigator>
     </NavigationContainer>
   )

@@ -1,0 +1,43 @@
+{
+  "data": [
+    {
+      "nameCategory": "Games", 
+      "data": [
+        {
+          "Title": "Naked Snake",
+          "from": "Metal gear solid",
+          "picture": "imagem da foto aq",
+          "price": 178
+        },
+        {
+          "Title": "Kratos and Atreus",
+          "from": "God of War",
+          "picture": "imagem da foto aq",
+          "price": 300
+        }
+      ]
+    },
+    {
+      "nameCategory": "Animes", 
+      "data": [
+        {
+          "Title": "Shikamaru",
+          "from": "Naruto",
+          "picture": "imagem da foto aq",
+          "price": 86.90
+        }
+      ]
+    },
+    {
+      "nameCategory": "Movies", 
+      "data": [
+        {
+          "Title": "Iron Man",
+          "from": "Iron Man",
+          "picture": "imagem da foto aq",
+          "price": 234.90
+        }
+      ]
+    }
+  ]
+}
