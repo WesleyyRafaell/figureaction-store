@@ -12,6 +12,7 @@ import dataJson from '../../data.json';
 
 export default function Shop() {
   const [category, setCategory] = useState();
+  const [actions, setActions] = useState([]);
 
   useEffect(()=> {
     const nameCategory = dataJson.data.map(item => item.nameCategory);
@@ -26,6 +27,17 @@ export default function Shop() {
 
     setCategory(objectCategory);
   },[]);
+
+  useEffect(()=> {
+    const actionsObject = [];
+    dataJson.data.forEach(item => (
+      item.actions.forEach(item => {
+        actionsObject.push(item)
+      })
+    ));
+
+    setActions(actionsObject);
+  }, [])
 
 
   function handleActiveItem(index){
@@ -46,7 +58,7 @@ export default function Shop() {
     navigation.navigate('Welcome')
   }
   
-  if(!category){
+  if(!category || !actions){
     return (
       <View style={styles.loading}>
         <Text>Carregando...</Text>
@@ -80,31 +92,17 @@ export default function Shop() {
           </ScrollView>
         </View>
         <View style={styles.containerActionsFigure}>
-          <ScrollView horizontal> 
-            <View style={styles.actionFigure}>
-                <Image style={styles.imageFigure} source={metalgearsolid1} />
-                <View style={styles.descriptionFigure}>
-                  <Text style={[styles.nameFigure, styles.textStyle]}>Naked Snake</Text>
-                  <Text style={[styles.game, styles.textStyle]}>Metal gear solid</Text>
-                  <Text style={styles.priceFigure}>R$ 178</Text>
-                </View>
-            </View>
-            <View style={styles.actionFigure}>
-                <Image style={styles.imageFigure} source={metalgearsolid1} />
-                <View style={styles.descriptionFigure}>
-                  <Text style={[styles.nameFigure, styles.textStyle]}>Naked Snake</Text>
-                  <Text style={[styles.game, styles.textStyle]}>Metal gear solid</Text>
-                  <Text style={styles.priceFigure}>R$ 178</Text>
+          <ScrollView horizontal>
+            {actions.map(({title, from, price}) => (
+              <View style={styles.actionFigure} key={title}>
+                  <Image style={styles.imageFigure} source={metalgearsolid1} />
+                  <View style={styles.descriptionFigure}>
+                    <Text style={[styles.nameFigure, styles.textStyle]}>{title}</Text>
+                    <Text style={[styles.game, styles.textStyle]}>{from}</Text>
+                    <Text style={styles.priceFigure}>R$ {price}</Text>
+                  </View>
               </View>
-            </View>
-            <View style={styles.actionFigure}>
-                <Image style={styles.imageFigure} source={metalgearsolid1} />
-                <View style={styles.descriptionFigure}>
-                  <Text style={[styles.nameFigure, styles.textStyle]}>Naked Snake</Text>
-                  <Text style={[styles.game, styles.textStyle]}>Metal gear solid</Text>
-                  <Text style={styles.priceFigure}>R$ 178</Text>
-                </View>
-            </View>
+            ))} 
           </ScrollView>
         </View>
       </View>
@@ -199,6 +197,7 @@ const styles = StyleSheet.create({
   textStyle:{
     color: '#2E2F33',
     fontFamily: 'Ubuntu_700Bold',
+    textAlign: 'center'
   },
   nameFigure: {
     fontSize: 17
