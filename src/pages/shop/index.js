@@ -5,9 +5,6 @@ import { StyleSheet, Text, View, StatusBar, TouchableOpacity, ScrollView, Image,
 import { RectButton } from 'react-native-gesture-handler';
 import { useNavigation  } from '@react-navigation/native';
 
-
-import metalgearsolid1 from '../../assets/img/metalgearsolid1.png';
-
 import dataJson from '../../data.json';
 
 export default function Shop() {
@@ -29,15 +26,22 @@ export default function Shop() {
   },[]);
 
   useEffect(()=> {
+    const figures = returnArrayOfObjectsFigures(dataJson.data);
+
+    setActions(figures);
+  }, [])
+
+  function returnArrayOfObjectsFigures(array){
     const actionsObject = [];
-    dataJson.data.forEach(item => (
+
+    array.forEach(item => (
       item.actions.forEach(item => {
         actionsObject.push(item)
       })
     ));
 
-    setActions(actionsObject);
-  }, [])
+    return actionsObject;
+  }
 
 
   function handleActiveItem(index){
@@ -48,8 +52,16 @@ export default function Shop() {
       }
     ));
     categoryReseted[index].active = true;
-
+    
+    handleActiveCategoryActions(categoryReseted[index].name);
     setCategory(categoryReseted);
+  }
+
+  function handleActiveCategoryActions(nameItem){
+    const figures = returnArrayOfObjectsFigures(dataJson.data);
+
+    const newCategory = figures.filter(item => item.category === nameItem);
+    setActions(newCategory);
   }
 
   const navigation = useNavigation();
@@ -93,9 +105,9 @@ export default function Shop() {
         </View>
         <View style={styles.containerActionsFigure}>
           <ScrollView horizontal>
-            {actions.map(({title, from, price}) => (
+            {actions.map(({title, from, price, picture}) => (
               <View style={styles.actionFigure} key={title}>
-                  <Image style={styles.imageFigure} source={metalgearsolid1} />
+                  <Image style={styles.imageFigure} source={{uri: picture}} />
                   <View style={styles.descriptionFigure}>
                     <Text style={[styles.nameFigure, styles.textStyle]}>{title}</Text>
                     <Text style={[styles.game, styles.textStyle]}>{from}</Text>
@@ -178,11 +190,13 @@ const styles = StyleSheet.create({
   actionFigure: {
     width: 140,
     alignItems: 'center',
-    marginRight: 30
+    marginRight: 30,
   },
   imageFigure:{
     position: 'relative',
-    zIndex: 1
+    zIndex: 1,
+    width: 100,
+    height: 120
   },
   descriptionFigure:{
     backgroundColor: '#fff',

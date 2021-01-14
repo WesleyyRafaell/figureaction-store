@@ -6,14 +6,16 @@
         {
           "title": "Naked Snake",
           "from": "Metal gear solid",
-          "picture": "imagem da foto aq",
-          "price": 178
+          "picture": "https://i.ibb.co/SV2Pc4T/metalgearsolid1.png",
+          "price": 178,
+          "category": "Games"
         },
         {
-          "title": "Kratos and Atreus",
+          "title": "Kratos",
           "from": "God of War",
-          "picture": "imagem da foto aq",
-          "price": 300
+          "picture": "https://i.ibb.co/Kbpz67t/kratos.png",
+          "price": 300,
+          "category": "Games"
         }
       ]
     },
@@ -23,8 +25,9 @@
         {
           "title": "Shikamaru",
           "from": "Naruto",
-          "picture": "imagem da foto aq",
-          "price": 86.90
+          "picture": "https://i.ibb.co/1sDTthJ/shikamaru.png",
+          "price": 86.90,
+          "category": "Animes"
         }
       ]
     },
@@ -34,8 +37,9 @@
         {
           "title": "Iron Man",
           "from": "Iron Man",
-          "picture": "imagem da foto aq",
-          "price": 234.90
+          "picture": "https://i.ibb.co/sw6hPhb/ironman.png",
+          "price": 234.90,
+          "category": "Movies"
         }
       ]
     }
